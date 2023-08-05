@@ -1,0 +1,149 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hunt Train Currency Macro Generator</title>
+    </head>
+
+    <body>
+        <div class="max-w-2xl mx-auto py-12 md:max-w-6xl">
+            <h1 class="text-xl font-bold capitalize">Hunt Train Currency Macro Generator</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-2 mt-8">
+                <div class="border border-white p-2 border-opacity-40">
+                    <b>Settings</b>
+                    <br />
+                    <span class="text-sm">
+                        Choose one more more expansions to add to your train and indicate how many marks are in that
+                        expansion's leg of the train.
+                    </span>
+                    <form id="frmSettings" method="get" onsubmit="return false">
+                        <div class="grid grid-cols-2 items-center">
+                            <div><b>Expansion</b></div>
+                            <div><b>Mark Count</b></div>
+
+                            <div>
+                                <label class="flex items-center gap-x-2"
+                                    ><input type="checkbox" name="EW" value="EW" id="frmChkEW" /> <b>Endwalker</b></label
+                                >
+                            </div>
+                            <div>
+                                <input
+                                    type="number"
+                                    id="txtCountEW"
+                                    class="form-input mt-1 w-12 block text-gray-800 bg-slate-300 p-1"
+                                    min="0"
+                                    value="16"
+                                />
+                            </div>
+                            <div>
+                                <label class="flex items-center gap-x-2"
+                                    ><input type="checkbox" name="SHB" value="SHB" id="frmChkSHB" /><b>Shadowbringers</b></label
+                                >
+                            </div>
+                            <div>
+                                <input
+                                    type="number"
+                                    id="txtCountSHB"
+                                    class="form-input mt-1 w-12 inline-block text-gray-800 bg-slate-300 p-1"
+                                    min="0"
+                                    value="12"
+                                />
+                            </div>
+                            <div>
+                                <label class="flex items-center gap-x-2"
+                                    ><input type="checkbox" name="SB" value="SB" id="frmChkSB" /><b>Stormblood</b></label
+                                >
+                            </div>
+                            <div>
+                                <input
+                                    type="number"
+                                    id="txtCountSB"
+                                    class="form-input mt-1 w-12 inline-block text-gray-800 bg-slate-300 p-1"
+                                    min="0"
+                                    value="12"
+                                />
+                            </div>
+                            <div>
+                                <label class="flex items-center gap-x-2"
+                                    ><input type="checkbox" name="HW" value="HW" id="frmChkHW" /><b>Heavensward</b></label
+                                >
+                            </div>
+                            <div>
+                                <input
+                                    type="number"
+                                    id="txtCountHW"
+                                    class="form-input mt-1 w-12 inline-block text-gray-800 bg-slate-300 p-1"
+                                    min="0"
+                                    value="12"
+                                />
+                            </div>
+                            <div>
+                                <label class="flex items-center gap-x-2"
+                                    ><input type="checkbox" name="ARR" value="ARR" id="frmChkARR" /><b>A Realm Reborn</b></label
+                                >
+                            </div>
+                            <div>
+                                <input
+                                    type="number"
+                                    id="txtCountARR"
+                                    class="form-input mt-1 w-12 inline-block text-gray-800 bg-slate-300 p-1"
+                                    min="0"
+                                    value="17"
+                                />
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="grid grid-cols-2 mb-4 items-center">
+                                <div>
+                                    <label class="flex items-center gap-2">
+                                        <input type="radio" name="displayMode" value="caps" checked="checked"><span>Maximum Amount Held</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="flex items-center gap-2">
+                                        <input type="radio" name="displayMode" value="generated"><span>Amount Generated</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="button" id="btnUpdate"
+                            class="btn p-2 px-4 rounded-lg bg-slate-600 hover:bg-slate-400 text-slate-100 hover:text-slate-800">Update</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="border border-white p-2 border-opacity-40">
+                    <b>Output</b>
+                    <div class="bg-red-900 text-red-100 p-2 border rounded-lg hidden" 
+                    id="divErrorMessage">
+                        <b>You must select at least one expansion for this to work!</b>
+                    </div>
+                    <div class="mt-12">
+                        <fieldset class="w-full relative">
+                            <legend class="-mt-2 font-bold text-sm bg-blue-500 p-1 px-4 rounded-lg rounded-b-none">Shout Macro</legend>
+                            <textarea name="shoutmacro" id="shoutmacro" cols="60" rows="3"
+                            class="w-full bg-blue-900 text-slate-200 rounded-lg rounded-tl-none pr-8"></textarea>
+                            <button class="absolute bottom-0 right-0 bg-slate-800 border-slate-100 border p-1 text-sm"
+                            id="btnCopyShout">Copy</button>
+                        </fieldset>
+                    </div>
+                    <div class="mt-12">
+                        <fieldset class="w-full relative">
+                            <legend class="-mt-2 font-bold text-sm bg-blue-500 p-1 px-4 rounded-lg rounded-b-none">Party Macro</legend>
+                            <textarea name="partymacro" id="partymacro" cols="60" rows="3"
+                            class="w-full bg-blue-900 text-slate-200 rounded-lg rounded-tl-none"></textarea>
+                            <button class="absolute bottom-0 right-0 bg-slate-800 border-slate-100 border p-1 text-sm"
+                            id="btnCopyParty">Copy</button>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8">
+                Created by Kaiden Alenko of Adamantoise. Ping me in game if I screwed something up or
+                if the default mob count should be updated.
+                <br>
+                &copy;2023 - Last updated for game version 6.45
+                <br>
+                FFXIV, Final Fantasy, and other names are trademark of SquareEnix.
+            </div>
+        </div>
+    </body>
+</html>
