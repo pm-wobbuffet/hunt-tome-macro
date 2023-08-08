@@ -50,7 +50,10 @@ const config = {
       template: 'src/index.html',
     }),
     new CopyPlugin({
-      patterns: [{ from: 'src/static', to: 'static' }],
+      patterns: [
+        { from: 'src/static', to: 'static' },
+        { from: 'src/static/main', to: '' }
+    ],
     }),
   ],
   mode: production ? 'production' : 'development',
