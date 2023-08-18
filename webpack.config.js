@@ -13,8 +13,8 @@ const config = {
   },
   output: {
     path: path.resolve('dist'),
-    filename: 'js/[name].js',
-    chunkFilename: 'js/[name].[chunkhash:3].js',
+    filename: 'js/[hash].js',
+    chunkFilename: 'js/[hash].[chunkhash:3].js',
   },
   module: {
     rules: [
