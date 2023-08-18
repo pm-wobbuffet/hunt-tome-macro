@@ -1,13 +1,21 @@
 import "../css/app.css";
 
-let currency = {
+const currency = {
     "Allied Seals": 4000,
     "Centurio Seals": 4000,
     Nuts: 4000,
     Poetics: 2000,
     Causality: 2000,
     Comedy: 2000,
-};
+}
+const currencyToEmotes = {
+    'Allied Seals': '<:alliedseal:711080429775749170>',
+    'Centurio Seals': '<:centurioseal:711080444728311898>',
+    'Nuts': '<:nutsack:711074430910070837>',
+    'Poetics': '<:poetics:711074456386142240>',
+    'Causality': '<:Causality:1013952874646081586>',
+    'Comedy': '<:Comedy:1110805833270444103>',
+}
 let expansions = {
     ARR: {
         "Allied Seals": 40,
@@ -37,6 +45,13 @@ let expansions = {
         Comedy: 10,
     },
 };
+
+const swapCurrencyWithEmotes = function(macroStr) {
+    for(let key in currencyToEmotes) {
+        macroStr = macroStr.replace(key, currencyToEmotes[key])
+    }
+    return macroStr
+}
 
 let updateMacros = function (frm) {
     let myCurrencies = {};
@@ -75,39 +90,41 @@ let updateMacros = function (frm) {
 let generateMacroText = function (currList, generationMode) {
     console.log(currList, generationMode);
     // Get references to macro boxes
-    let shoutMacro = document.getElementById("shoutmacro");
-    let partyMacro = document.getElementById("partymacro");
-    let macroString = "";
+    let shoutMacro = document.getElementById("shoutmacro")
+    let partyMacro = document.getElementById("partymacro")
+    let discordMacro = document.getElementById("discordmacro")
+    let macroString = ""
 
     if (generationMode === "generated") {
         // Show them the total amount of currency generated for the train(s).
         // No worries about max calculation
-        let tmpCurrArray = [];
+        let tmpCurrArray = []
         for (let currType in currList) {
-            tmpCurrArray.push(currList[currType] + " " + currType);
+            tmpCurrArray.push(currList[currType] + " " + currType)
         }
-        let currString = tmpCurrArray.join(", ");
-        macroString = `Tome Check! This train will generate ${currString}.`;
+        let currString = tmpCurrArray.join(", ")
+        macroString = `Tome Check! This train will generate ${currString}.`
     } else {
         // Show the user the maximum amount of tomes that may be help to prevent overcapping
         // by the end of the train
-        let tmpCurrArray = [];
+        let tmpCurrArray = []
         for (let currType in currList) {
             if (currType in currency) {
                 let maxHeld = Math.max(currency[currType] - currList[currType], 0);
-                tmpCurrArray.push(maxHeld + " " + currType);
+                tmpCurrArray.push(maxHeld + " " + currType)
             }
         }
-        let currString = tmpCurrArray.join(", ");
-        macroString = `Tome Check! Make sure to have less than ${currString} to prevent overcapping!`;
+        let currString = tmpCurrArray.join(", ")
+        macroString = `Tome Check! Make sure to have less than ${currString} to prevent overcapping!`
     }
 
     if (macroString.lastIndexOf(",") > 0) {
-        let lastComma = macroString.lastIndexOf(",");
-        macroString = macroString.substring(0, lastComma) + " and" + macroString.substring(lastComma + 1);
+        let lastComma = macroString.lastIndexOf(",")
+        macroString = macroString.substring(0, lastComma) + " and" + macroString.substring(lastComma + 1)
     }
-    shoutMacro.value = `/sh ${macroString}`;
-    partyMacro.value = `/p ${macroString}`;
+    shoutMacro.value = `/sh ${macroString}`
+    partyMacro.value = `/p ${macroString}`
+    discordMacro.value = swapCurrencyWithEmotes(`${macroString}`)
 };
 
 let showError = function (errorMsg) {
@@ -144,6 +161,9 @@ document.addEventListener("DOMContentLoaded", function (ev) {
     })
     document.getElementById('btnCopyParty').addEventListener('click', function() {
         copyMacro('partymacro', this)
+    })
+    document.getElementById('btnCopyDiscord').addEventListener('click', function() {
+        copyMacro('discordmacro', this)
     })
 });
 //console.log('app.js entry');
