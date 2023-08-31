@@ -93,7 +93,8 @@ let generateMacroText = function (currList, generationMode) {
     let shoutMacro = document.getElementById("shoutmacro")
     let partyMacro = document.getElementById("partymacro")
     let discordMacro = document.getElementById("discordmacro")
-    let macroString = ""
+    let macroTemplate = document.getElementById('txtTextTemplate')
+    let macroString = checkTextTemplate(macroTemplate.value)
 
     if (generationMode === "generated") {
         // Show them the total amount of currency generated for the train(s).
@@ -103,7 +104,8 @@ let generateMacroText = function (currList, generationMode) {
             tmpCurrArray.push(currList[currType] + " " + currType)
         }
         let currString = tmpCurrArray.join(", ")
-        macroString = `Tome Check! This train will generate ${currString}.`
+        //macroString = `Tome Check! This train will generate ${currString}.`
+        macroString = macroString.replace('$c', currString)
     } else {
         // Show the user the maximum amount of tomes that may be help to prevent overcapping
         // by the end of the train
@@ -115,7 +117,8 @@ let generateMacroText = function (currList, generationMode) {
             }
         }
         let currString = tmpCurrArray.join(", ")
-        macroString = `Tome Check! Make sure to have less than ${currString} to prevent overcapping!`
+        // macroString = `Tome Check! Make sure to have less than ${currString} to prevent overcapping!`
+        macroString = macroString.replace('$c', currString)
     }
 
     if (macroString.lastIndexOf(",") > 0) {
@@ -147,11 +150,29 @@ let copyMacro = async (macroType, ele) => {
     }
 };
 
+const checkTextTemplate = function(txtString) {
+    if(txtString === '' || txtString.length < 1) {
+        txtString = 'Tome Check! Make sure to have less than $c to prevent overcapping!';
+    }
+    if (txtString.lastIndexOf('$c') === -1) {
+        txtString += ' $c';
+    }
+    return txtString;
+}
+
 document.addEventListener("DOMContentLoaded", function (ev) {
     let frm = document.getElementById("frmSettings");
     frm.addEventListener("change", function (ev) {
         updateMacros(frm);
     });
+    let textTemplate = document.getElementById('txtTextTemplate');
+    // Does a user-saved text template exist?
+    if(localStorage.getItem('textTemplate') !== null) {
+        textTemplate.value = checkTextTemplate(localStorage.getItem('textTemplate'));
+    }
+    textTemplate.addEventListener("change", function(ev) {
+        localStorage.setItem('textTemplate', textTemplate.value);
+    })
     let updateButton = document.getElementById("btnUpdate");
     updateButton.addEventListener("click", function (ev) {
         updateMacros(frm);
