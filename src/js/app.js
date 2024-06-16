@@ -7,6 +7,8 @@ const currency = {
     Poetics: 2000,
     Causality: 2000,
     Comedy: 2000,
+    Aesthetics: 2000,
+    Heliometry: 2000,
 }
 const currencyToEmotes = {
     'Allied Seals': '<:alliedseal:711080429775749170>',
@@ -15,35 +17,42 @@ const currencyToEmotes = {
     'Poetics': '<:poetics:711074456386142240>',
     'Causality': '<:Causality:1013952874646081586>',
     'Comedy': '<:Comedy:1110805833270444103>',
+    'Aesthetics': 'Aesthetics',
+    'Heliometry': 'Heliometry',
 }
 let expansions = {
     ARR: {
         "Allied Seals": 40,
         "Centurio Seals": 20,
         Poetics: 30,
-        Causality: 10,
+        Aesthetics: 10,
     },
     HW: {
         "Centurio Seals": 40,
         Poetics: 30,
-        Causality: 10,
+        Aesthetics: 10,
     },
     SB: {
         "Centurio Seals": 40,
         Poetics: 30,
-        Causality: 10,
+        Aesthetics: 10,
     },
     SHB: {
         Nuts: 40,
         Poetics: 30,
-        Causality: 10,
+        Aesthetics: 10,
     },
     EW: {
         Nuts: 40,
         Poetics: 30,
-        Causality: 20,
-        Comedy: 10,
+        Aesthetics: 10,
     },
+    DT: {
+        Nuts: 40,
+        Poetics: 30,
+        Aesthetics: 20,
+        //Heliometry: 10,
+    }
 };
 
 const swapCurrencyWithEmotes = function(macroStr) {
