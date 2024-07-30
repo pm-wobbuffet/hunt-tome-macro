@@ -58,6 +58,7 @@ const config = {
   ],
   mode: production ? 'production' : 'development',
   stats: production ? 'normal' : 'minimal',
+  target: "web"
 };
 
 if (production) {
