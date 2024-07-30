@@ -51,7 +51,7 @@ let expansions = {
         Nuts: 40,
         Poetics: 30,
         Aesthetics: 20,
-        //Heliometry: 10,
+        Heliometry: 10,
     }
 };
 
