@@ -13,13 +13,13 @@ const currency = {
 const currencyToEmotes = {
     'Allied Seals': '<:alliedseal:711080429775749170>',
     'Centurio Seals': '<:centurioseal:711080444728311898>',
-    'Nuts': '<:nutsack:711074430910070837>',
-    'Poetics': '<:poetics:711074456386142240>',
+    'Nuts': '<:sackofnuts:1117597415390846977>',
+    'Poetics': '<:poetics:1355014355590320248>',
     'Causality': '<:Causality:1013952874646081586>',
     'Comedy': '<:Comedy:1110805833270444103>',
     'Aesthetics': 'Aesthetics',
-    'Heliometry': 'Heliometry',
-    'Mathematics': 'Mathematics'
+    'Heliometry': '<:heliometry:1268127432158875691>',
+    'Mathematics': '<:mathematics:1355013812230553712>'
 }
 let expansions = {
     ARR: {
@@ -56,8 +56,8 @@ let expansions = {
     }
 };
 
-const swapCurrencyWithEmotes = function(macroStr) {
-    for(let key in currencyToEmotes) {
+const swapCurrencyWithEmotes = function (macroStr) {
+    for (let key in currencyToEmotes) {
         macroStr = macroStr.replace(key, currencyToEmotes[key])
     }
     return macroStr
@@ -152,7 +152,7 @@ let copyMacro = async (macroType, ele) => {
         await navigator.clipboard.writeText(text);
         //console.log("Content copied to clipboard");
         ele.innerHTML = 'Copied!'
-        setTimeout(function() {
+        setTimeout(function () {
             ele.innerHTML = 'Copy'
         }, 2000)
     } catch (err) {
@@ -160,8 +160,8 @@ let copyMacro = async (macroType, ele) => {
     }
 };
 
-const checkTextTemplate = function(txtString) {
-    if(txtString === '' || txtString.length < 1) {
+const checkTextTemplate = function (txtString) {
+    if (txtString === '' || txtString.length < 1) {
         txtString = 'Tome Check! Make sure to have less than $c to prevent overcapping!';
     }
     if (txtString.lastIndexOf('$c') === -1) {
@@ -177,23 +177,23 @@ document.addEventListener("DOMContentLoaded", function (ev) {
     });
     let textTemplate = document.getElementById('txtTextTemplate');
     // Does a user-saved text template exist?
-    if(localStorage.getItem('textTemplate') !== null) {
+    if (localStorage.getItem('textTemplate') !== null) {
         textTemplate.value = checkTextTemplate(localStorage.getItem('textTemplate'));
     }
-    textTemplate.addEventListener("change", function(ev) {
+    textTemplate.addEventListener("change", function (ev) {
         localStorage.setItem('textTemplate', textTemplate.value);
     })
     let updateButton = document.getElementById("btnUpdate");
     updateButton.addEventListener("click", function (ev) {
         updateMacros(frm);
     });
-    document.getElementById('btnCopyShout').addEventListener('click', function() {
+    document.getElementById('btnCopyShout').addEventListener('click', function () {
         copyMacro('shoutmacro', this)
     })
-    document.getElementById('btnCopyParty').addEventListener('click', function() {
+    document.getElementById('btnCopyParty').addEventListener('click', function () {
         copyMacro('partymacro', this)
     })
-    document.getElementById('btnCopyDiscord').addEventListener('click', function() {
+    document.getElementById('btnCopyDiscord').addEventListener('click', function () {
         copyMacro('discordmacro', this)
     })
 });
