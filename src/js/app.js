@@ -98,7 +98,6 @@ let updateMacros = function (frm) {
 };
 
 let generateMacroText = function (currList, generationMode) {
-    console.log(currList, generationMode);
     // Get references to macro boxes
     let shoutMacro = document.getElementById("shoutmacro")
     let partyMacro = document.getElementById("partymacro")
@@ -150,7 +149,6 @@ let copyMacro = async (macroType, ele) => {
     let text = document.getElementById(macroType).value ?? ''
     try {
         await navigator.clipboard.writeText(text);
-        //console.log("Content copied to clipboard");
         ele.innerHTML = 'Copied!'
         setTimeout(function () {
             ele.innerHTML = 'Copy'
@@ -197,4 +195,3 @@ document.addEventListener("DOMContentLoaded", function (ev) {
         copyMacro('discordmacro', this)
     })
 });
-//console.log('app.js entry');
