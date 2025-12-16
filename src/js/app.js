@@ -8,7 +8,8 @@ const currency = {
     Causality: 2000,
     Comedy: 2000,
     Heliometry: 2000,
-    Mathematics: 2000
+    Mathematics: 2000,
+    Mnemonics: 2000,
 }
 const currencyToEmotes = {
     'Allied Seals': '<:alliedseal:711080429775749170>',
@@ -19,40 +20,41 @@ const currencyToEmotes = {
     'Comedy': '<:Comedy:1110805833270444103>',
     'Aesthetics': 'Aesthetics',
     'Heliometry': '<:heliometry:1268127432158875691>',
-    'Mathematics': '<:mathematics:1355013812230553712>'
+    'Mathematics': '<:mathematics:1355013812230553712>',
+    'Mnemonics': 'Mnemonics'
 }
 let expansions = {
     ARR: {
         "Allied Seals": 40,
         "Centurio Seals": 20,
         Poetics: 30,
-        Heliometry: 10,
+        Mathematics: 10,
     },
     HW: {
         "Centurio Seals": 40,
         Poetics: 30,
-        Heliometry: 10,
+        Mathematics: 10,
     },
     SB: {
         "Centurio Seals": 40,
         Poetics: 30,
-        Heliometry: 10,
+        Mathematics: 10,
     },
     SHB: {
         Nuts: 40,
         Poetics: 30,
-        Heliometry: 10,
+        Mathematics: 10,
     },
     EW: {
         Nuts: 40,
         Poetics: 30,
-        Heliometry: 10,
+        Mathematics: 10,
     },
     DT: {
         Nuts: 40,
         Poetics: 30,
-        Heliometry: 20,
-        Mathematics: 10,
+        Mathematics: 20,
+        Mnemonics: 10,
     }
 };
 
