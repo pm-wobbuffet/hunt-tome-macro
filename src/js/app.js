@@ -21,7 +21,7 @@ const currencyToEmotes = {
     'Aesthetics': 'Aesthetics',
     'Heliometry': '<:heliometry:1268127432158875691>',
     'Mathematics': '<:mathematics:1355013812230553712>',
-    'Mnemonics': 'Mnemonics'
+    'Mnemonics': '<:mnemonic:1466148954906296557>'
 }
 let expansions = {
     ARR: {
